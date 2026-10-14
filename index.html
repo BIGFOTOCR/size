@@ -32,31 +32,51 @@
             flex-direction: column;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             position: relative;
-            /* Espacio extra abajo para que la imagen no quede tapada por el botón flotante */
             padding-bottom: 90px; 
         }
 
-        /* NAVEGADOR ESTÁTICO EN LA PARTE SUPERIOR */
+        /* NAVEGADOR ESTILO PÍLDORA EN UNA SOLA FILA DESLIZABLE */
         .nav-tabs {
-            display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 10px;
-            background: #fff;
-            justify-content: center; position: sticky; top: 0; z-index: 10;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-top: 6px solid var(--magenta);
-        }
-        .nav-btn {
-            background: #f0f0f0; border: none; color: #555; padding: 12px 10px;
-            border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 900;
-            font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: 0.2s;
-            flex-grow: 1; text-align: center; letter-spacing: -0.5px;
+            display: flex; 
+            flex-wrap: nowrap; /* Fuerza a que todo esté en una línea */
+            gap: 8px; 
+            padding: 15px 12px;
+            background: #ffffff;
+            justify-content: flex-start; /* Empieza desde la izquierda para permitir scroll */
+            position: sticky; top: 0; z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            overflow-x: auto; /* Permite deslizar horizontalmente */
+            -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
+            scrollbar-width: none; /* Oculta la barrita de scroll en Firefox */
         }
         
-        .nav-btn.active { background: var(--dark-bg); color: var(--yellow); }
-        .nav-btn.active.tab-aluminio { border-bottom: 4px solid var(--magenta); }
-        .nav-btn.active.tab-acrilico { border-bottom: 4px solid var(--cyan); }
-        .nav-btn.active.tab-porta { border-bottom: 4px solid var(--magenta); }
-        .nav-btn.active.tab-stand { border-bottom: 4px solid var(--cyan); }
-        .nav-btn.active.tab-llav { border-bottom: 4px solid var(--magenta); }
+        /* Oculta la barrita de scroll en Chrome, Safari y Edge */
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            background: #f4f4f4; border: 2px solid transparent; color: #555; padding: 10px 16px;
+            border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 800;
+            font-size: 0.75rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+            flex: 0 0 auto; /* Evita que los botones se encojan */
+            white-space: nowrap; /* Evita que el texto del botón salte a dos líneas */
+            text-align: center; letter-spacing: -0.3px;
+        }
+        
+        .nav-btn.active { 
+            background: var(--dark-bg); 
+            color: #ffffff; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Bordes de color según la categoría activa */
+        .nav-btn.active.tab-llav { border-color: var(--magenta); }
+        .nav-btn.active.tab-aluminio { border-color: var(--yellow); }
+        .nav-btn.active.tab-acrilico { border-color: var(--cyan); }
+        .nav-btn.active.tab-porta { border-color: var(--magenta); }
+        .nav-btn.active.tab-stand { border-color: var(--cyan); }
 
         /* CONTENEDOR DE LA IMAGEN */
         .catalog-image-container {
@@ -98,7 +118,7 @@
         }
         .btn-whatsapp:active { transform: scale(0.96); }
         
-        /* Icono SVG de WhatsApp */
+        /* Icono SVG Oficial de WhatsApp */
         .wa-icon { width: 24px; height: 24px; fill: currentColor; }
 
     </style>
@@ -106,18 +126,18 @@
 <body>
     <div class="main-container">
         
-        <!-- PESTAÑAS DE NAVEGACIÓN REORDENADAS -->
-        <nav class="nav-tabs">
-            <button class="nav-btn tab-llav active" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 9.10.19 PM.jpeg', 'Llaveros', this)">Llaveros</button>
-            <button class="nav-btn tab-aluminio" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 9.10.03 PM (3).jpeg', 'Cuadros de Aluminio', this)">Cuadros de Aluminio</button>
-            <button class="nav-btn tab-acrilico" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 9.10.03 PM (2).jpeg', 'Cuadros de Acrílicos', this)"> Cuadros de Acrílicos</button>
-            <button class="nav-btn tab-porta" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 9.10.03 PM (1).jpeg', 'Portaretratos y Mesa', this)">Portaretratos</button>
-            <button class="nav-btn tab-stand" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 9.10.03 PM.jpeg', 'Standees Personalizados', this)">Standees</button>
+        <!-- PESTAÑAS DE NAVEGACIÓN (AHORA DESLIZABLES) -->
+        <nav class="nav-tabs" id="menu-tabs">
+            <button class="nav-btn tab-llav active" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 10.45.41 PM (1).jpeg', 'Llaveros', this)">Llaveros</button>
+            <button class="nav-btn tab-aluminio" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 10.45.41 PM.jpeg', 'Cuadros de Aluminio', this)">Cuadros de Aluminio</button>
+            <button class="nav-btn tab-acrilico" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 10.45.40 PM (2).jpeg', 'Cuadros de Acrílico', this)">Cuadros de Acrílico</button>
+            <button class="nav-btn tab-porta" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 10.52.52 PM.jpeg', 'Portaretratos', this)">Portaretratos</button>
+            <button class="nav-btn tab-stand" onclick="loadFlyer('WhatsApp Image 2026-10-13 at 10.45.40 PM (1).jpeg', 'Standees', this)">Standees</button>
         </nav>
 
         <!-- AFICHE INICIAL AHORA ES LLAVEROS -->
         <div class="catalog-image-container">
-            <img id="main-flyer" class="catalog-image" src="WhatsApp Image 2026-10-13 at 9.10.19 PM.jpeg" alt="Catálogo Big Foto CR">
+            <img id="main-flyer" class="catalog-image" src="WhatsApp Image 2026-10-13 at 10.45.41 PM (1).jpeg" alt="Catálogo Big Foto CR">
         </div>
 
     </div>
@@ -125,23 +145,28 @@
     <!-- BOTÓN FLOTANTE FIJO -->
     <div class="floating-cta-container">
         <button class="btn-whatsapp" onclick="sendWA()">
-            <svg class="wa-icon" viewBox="0 0 24 24">
-                <path d="M12.031 0C5.394 0 0 5.394 0 12.031c0 2.12.553 4.148 1.603 5.952L.114 23.4l5.586-1.464C7.458 22.882 9.7 23.469 12.031 23.469c6.637 0 12.031-5.394 12.031-12.031S18.668 0 12.031 0zm.004 21.493c-1.785 0-3.53-.48-5.06-1.387l-.36-.214-3.766.988 1.006-3.67-.236-.375c-1.002-1.583-1.53-3.41-1.53-5.298 0-5.545 4.512-10.057 10.06-10.057 5.546 0 10.057 4.512 10.057 10.057 0 5.546-4.511 10.056-10.057 10.056zm5.518-7.535c-.303-.152-1.792-.885-2.07-9.987-.278-.101-.481-.152-.683.152-.202.303-.783.987-.96 1.189-.177.202-.354.227-.657.076-.303-.152-1.28-.472-2.438-1.505-.902-.806-1.51-1.802-1.687-2.106-.177-.304-.019-.467.133-.62.136-.135.303-.354.455-.53.151-.177.202-.304.303-.506.1-.202.05-.38-.026-.53-.075-.152-.682-1.645-.934-2.252-.246-.593-.496-.512-.683-.522-.177-.008-.38-.008-.582-.008-.202 0-.53.076-.808.38-.278.303-1.06 1.037-1.06 2.53 0 1.493 1.086 2.936 1.238 3.138.152.202 2.14 3.264 5.184 4.577.724.312 1.29.498 1.732.637.728.232 1.39.199 1.913.12.585-.088 1.792-.733 2.045-1.442.253-.708.253-1.315.177-1.442-.076-.126-.278-.202-.582-.354z"/>
+            <!-- VECTOR OFICIAL DE WHATSAPP -->
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.571-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
             </svg>
             COTIZAR AHORA
         </button>
     </div>
 
     <script>
-        // La categoría inicial ahora es Llaveros
         let currentCategory = 'Llaveros';
 
         function loadFlyer(imgSrc, categoryName, btnEl) {
+            // Quitar clase active de todos
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            // Agregar activo al seleccionado
             btnEl.classList.add('active');
 
+            // Centrar el botón seleccionado suavemente en el carrusel
+            btnEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+            // Cambiar imagen
             const flyerImg = document.getElementById('main-flyer');
-            
             flyerImg.style.animation = 'none';
             flyerImg.offsetHeight; 
             flyerImg.style.animation = 'fadeIn 0.4s ease-in-out';
